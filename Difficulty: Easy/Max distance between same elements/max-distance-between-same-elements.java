@@ -12,10 +12,13 @@ class Solution {
         Map<Integer, Integer> map = new HashMap<>();
         
         for (int i = 0; i < arr.length; i++){
+
+            // ? Is the element already present in map
             if (map.containsKey(arr[i])){
+
+                // Distance from previous occurance
                 int distance = i - map.get(arr[i]);
-                
-                if (distance > maxDistance) maxDistance = distance;
+                maxDistance = Math.max(distance, maxDistance);
             } else map.put(arr[i], i);
         }
         
