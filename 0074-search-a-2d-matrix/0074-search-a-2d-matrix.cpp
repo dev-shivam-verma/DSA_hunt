@@ -1,11 +1,20 @@
 class Solution {
 public:
     bool searchMatrix(vector<vector<int>>& matrix, int target) {
-        int i = 0;
-        while (i < matrix.size() && matrix[i][0] <= target) i++;
-        i--;
-        if (i == -1) return false;
-        return binarySearch(matrix[i], target);  
+        int st = 0, end = matrix.size() - 1;
+        int ridx = -1;
+
+        while (st <= end){
+            int mid = st + (end - st)/2;
+
+            if (matrix[mid][0] == target) return true;
+            else if (matrix[mid][0] > target) end = mid - 1;
+            else {
+                ridx = mid;
+                st = mid + 1;
+            }
+        }
+        return ridx == -1 ? false : binarySearch(matrix[ridx], target);
     }
 
     bool binarySearch(vector<int>& elements, int target){
