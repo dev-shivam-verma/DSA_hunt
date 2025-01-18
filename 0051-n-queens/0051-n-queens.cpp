@@ -17,12 +17,16 @@ public:
     bool isSafe(vector<string> board, int row, int col, int size){
         for (int i = row - 1; i >= 0; i--){
             int rowdiff = row - i;
+
+            // left diagonal
             if (col - rowdiff >= 0){
                 if (board[i][col - rowdiff] == 'Q') return false;
             }
+            // right diagonal 
             if (col + rowdiff < size){
                 if (board[i][col + rowdiff] == 'Q') return false;
             }
+            // vertical 
             if (board[i][col] == 'Q') return false;
         }
 
