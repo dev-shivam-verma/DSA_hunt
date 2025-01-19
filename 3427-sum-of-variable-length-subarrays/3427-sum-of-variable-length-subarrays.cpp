@@ -5,7 +5,7 @@ public:
         int sum = 0;
         vector<int> prefixSum;
 
-        // calculating sum of subarrays
+        // calculating sum of  subarrays
         for (int i = 0; i<n; i++){
             int start = max(0, i - nums[i]);
 
