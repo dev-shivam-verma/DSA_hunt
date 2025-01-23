@@ -37,12 +37,13 @@ public:
             if (isPalindrome(curr)){
 
                 partition.push_back(curr);
-                string next_s = i == n? "" : s.substr(i, n - i);
+                s = i == n? "" : s.substr(i, n - i);
 
-                helper(ans, next_s, partition);
+                helper(ans, s, partition);
 
                 // backtracking 
                 partition.pop_back();
+                s = curr + s;
             }
         }    
     }
