@@ -20,7 +20,7 @@ public:
     }
 
 
-    void helper(vector<vector<string>>& ans, string& s, vector<string>& partition){
+    void helper(vector<vector<string>>& ans, string s, vector<string>& partition){
         
         int n = s.length();
 
@@ -37,13 +37,12 @@ public:
             if (isPalindrome(curr)){
 
                 partition.push_back(curr);
-                s = i == n? "" : s.substr(i, n - i);
+                string next_s = i == n? "" : s.substr(i, n - i);
 
-                helper(ans, s, partition);
+                helper(ans, next_s, partition);
 
                 // backtracking 
                 partition.pop_back();
-                s = curr + s;
             }
         }    
     }
