@@ -20,7 +20,7 @@ public:
     }
 
 
-    void helper(vector<vector<string>>& ans, string s, vector<string>& partition){
+    void helper(vector<vector<string>>& ans, string& s, vector<string>& partition){
         
         int n = s.length();
 
