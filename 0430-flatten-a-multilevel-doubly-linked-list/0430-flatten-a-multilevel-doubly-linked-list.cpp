@@ -12,35 +12,36 @@ public:
 class Solution {
 public:
     Node* flatten(Node* head) {
-        list<Node*> nextList;
-        return helper(NULL,head, nextList);
-    }
+        if (head == NULL) return head;
 
-    Node* helper(Node* prev, Node* head, list<Node*>& nextList){
+        Node* curr = head;
+        while (curr != NULL){
+            if (curr->child != NULL){
+                Node* next = curr->next;
+                
+                //flatten the child 
+                curr-> next = flatten(curr->child);
+                curr->child = NULL;
 
-        if (head == NULL){
-            return NULL;
-        }
+                curr->next->prev = curr;
 
-        head->prev = prev;
+                while (curr->next != NULL){
+                    curr = curr->next;
+                }
 
-        if (head->child != NULL){
-            nextList.push_front(head->next);
-            head->next = helper(head, head->child, nextList);
-            head->child = NULL;
-            return head;
-        } else if (head->next != NULL){
-            head->next = helper(head, head->next, nextList);
-            return head;
-        } else {
-            Node* next = NULL;
-            if (nextList.size() != 0){
-                next = nextList.front();
-                nextList.pop_front();
+                // linking the flatten list to next
+                if (next != NULL){
+                    next->prev = curr;
+                    curr->next = next;
+                }
             }
 
-            head->next = helper(head, next, nextList);
-            return head;
+            curr = curr->next;
         }
+
+        return head;
     }
+
+    
+
 };
