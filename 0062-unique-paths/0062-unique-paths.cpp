@@ -3,24 +3,27 @@ class Solution {
 
 public:
     int uniquePaths(int m, int n) {
-        vector<vector<int>> dp(m, vector<int> (n, -1));
-        return memoization(m - 1, n - 1, dp);
-    }
+        vector<int> temp(n, 0);
 
+        // tabulation
+        for (int i = 0; i < m; i++){
 
-    int memoization(int m, int n, vector<vector<int>>& dp){
-        // base case
-        if (m == 0 && n == 0) return 1;
+            int prevj = 1;
 
-        int ways = 0;
-        if (m >= 1){
-            ways += dp[m - 1][n] != -1 ? dp[m - 1][n] : memoization(m - 1, n, dp);
-        }        
-        if (n >= 1) {
-            ways += dp[m][n - 1] != -1 ? dp[m][n - 1] : memoization(m , n - 1, dp);
+            for (int j = 0; j < n; j++){
+                int ways = 0;
+
+                ways += prevj;
+                if (j > 0) ways += temp[j];
+
+                prevj = ways;
+                temp[j] = ways;
+            }
         }
 
-        dp[m][n] = ways;
-        return ways;
+        return temp[n - 1];
     }
+
+
+    
 };
