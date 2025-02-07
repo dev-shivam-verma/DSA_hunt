@@ -2,26 +2,34 @@ class Solution {
 public:
     int minimumTotal(vector<vector<int>>& triangle) {
         int m = triangle.size();
-        int n = triangle[m-1].size();
+        int n = triangle[m - 1].size();
 
-        vector<vector<int>> dp(m + 1, vector<int> (n + 1, -1));
-        return recursion(0, 0, triangle, dp);
-    }
+        vector<vector<int>> dp(m, vector<int> (n, -1));
 
-
-    int recursion(int idx, int prev, vector<vector<int>>& triangle, vector<vector<int>>& dp){
-        if (idx == triangle.size()) return 0;
-
-        int curr, next = INT_MAX; 
-        curr = triangle[idx][prev];
-        curr += dp[idx + 1][prev] != -1? dp[idx + 1][prev] : recursion(idx + 1, prev, triangle, dp);
-
-        if (prev + 1 < triangle[idx].size()){
-            next = triangle[idx][prev + 1];
-            next += dp[idx + 1][prev + 1] != -1? dp[idx + 1][prev + 1]: recursion(idx + 1, prev + 1, triangle, dp);
+        // base case
+        for (int j = 0; j < n; j++){
+            int i = m-1;
+            dp[i][j] = triangle[i][j];
         }
 
-        dp[idx][prev] = min(curr, next);
-        return dp[idx][prev];
+
+        // tabulation
+        for (int i = m-2; i >= 0; i--){
+            for (int j = 0; j <= i; j++){
+                int curr = triangle[i][j];
+                int d = dp[i + 1][j] + curr;
+                int dg = dp[i + 1][j + 1] + curr;
+
+                dp[i][j] = min(d, dg);
+            }
+        }
+
+        return dp[0][0];
     }
+
+
+   
+
+
+
 };
