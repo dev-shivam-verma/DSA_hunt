@@ -1,35 +1,40 @@
 class Solution {
 public:
     int minFallingPathSum(vector<vector<int>>& matrix) {
-        int ans = INT_MAX;
+        int minPath = INT_MAX;
         int n = matrix.size();
-        vector<vector<int>> dp(matrix.size(), vector<int> (matrix.size(), -1));
-
+        vector<vector<int>> dp(matrix.size(), vector(matrix.size(), -1));
 
         // base case
         for (int i = 0; i < n; i++){
-            dp[n - 1][i] = matrix[n - 1][i]; 
+            dp[n-1][i] = matrix[n-1][i];
         }
 
-        // tabulation
-        for (int i = n - 2; i >= 0; i--){
-            for(int j = 0; j < n; j++){
-                int curr = matrix[i][j];
+        for (int idx = n-2; idx >= 0; idx--){
+            for (int pos = 0; pos < n; pos++){
+                int mini = INT_MAX;
+                int current = matrix[idx][pos];
 
-                int minPath = dp[i + 1][j];
-                if (j > 0) minPath = min(minPath, dp[i + 1][j - 1]);
-                if (j + 1 < n) minPath = min(minPath, dp[i + 1][j + 1]);
+                for (int j = -1; j <= 1; j++){
+                    int newPos = pos + j;
 
-                dp[i][j] = minPath + curr;
+                    if (newPos >= 0 && newPos < n){
+
+                        mini = min(mini, current + dp[idx + 1][newPos]);
+                    }
+                }
+
+                dp[idx][pos] = mini;
             }
-        } 
+        }
 
 
         for (int i = 0; i < n; i++){
-            ans= min(dp[0][i], ans);
+            minPath = min(minPath, dp[0][i]);
         }
 
-        return ans;
+        return minPath;
     }
 
+    
 };
