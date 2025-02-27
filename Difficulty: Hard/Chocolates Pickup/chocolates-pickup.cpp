@@ -8,36 +8,54 @@ class Solution {
   public:
     int solve(int n, int m, vector<vector<int>>& grid) {
         vector<vector<vector<int>>> dp (n, vector<vector<int>> (m, vector<int> (m, -1)));
-        return recursion(0, 0, m - 1,m,  grid, dp);
-    }
-    
-    
-    int recursion(int i, int j1, int j2, int m, vector<vector<int>>& grid, vector<vector<vector<int>>>& dp){
-    int curr = 0;
-
-    if (j1 < 0 || j1 >= m || j2 < 0 || j2 >= m) return -1e9;
-
-    if (j1 != j2){
-        curr += grid[i][j1] + grid[i][j2];
-    } else {
-        curr += grid[i][j1];
-    }
-
-    if (i == grid.size() - 1) return curr;
-    if (dp[i][j1][j2] != -1)
-        return dp[i][j1][j2];
-
-    int maxi = -1e9;
-
-    for (int di = -1; di <= 1; di++){
-        for (int dj = -1; dj <= 1; dj++){
-            maxi = max(maxi, recursion(i + 1, j1 + di, j2 + dj, m, grid, dp));
+        
+        // base case 
+        for (int j1 = 0; j1 < m; j1++){
+            for (int j2 = 0; j2 < m; j2++){
+                
+                int curr = 0;
+                if (j1 != j2){
+                    curr += grid[n-1][j1] + grid[n-1][j2];
+                } else {
+                    curr += grid[n-1][j1];
+                }
+            
+                dp[n-1][j1][j2] = curr;
+            }
         }
+        
+        for (int i = n-2; i >= 0; i--){
+            for (int j1 = 0; j1 < m; j1++){
+                for (int j2 = 0; j2 < m; j2++){
+                    int curr = 0;
+                    if (j1 != j2){
+                        curr += grid[i][j1] + grid[i][j2];
+                    } else {
+                        curr += grid[i][j1];
+                    }
+                    
+                    dp[i][j1][j2] = INT_MIN;
+                    
+                    for (int di = -1; di <= 1; di++){
+                        for (int dj = -1; dj <= 1; dj++){
+                            int jdi = j1 + di;
+                            int jdj = j2 + dj;
+                            
+                            if (jdi >= 0 && jdi < m && jdj >= 0 && jdj < m){
+                                dp[i][j1][j2] = max(dp[i][j1][j2], dp[i + 1][jdi][jdj] + curr);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        
+        
+        return dp[0][0][m - 1];
     }
-
-    dp[i][j1][j2] = curr + maxi;
-    return maxi + curr;
-}
+    
+    
+    
     
     
     
