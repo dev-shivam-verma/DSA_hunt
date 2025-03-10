@@ -11,7 +11,7 @@ public:
             prev[j] = j;
         } 
 
-        // tabulation with space optemization
+        // tabulation with space optimization
         for (int i = 1; i <= x; i++){
 
             // base case
