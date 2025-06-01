@@ -23,11 +23,13 @@ class Solution {
 
         while (temp != null){
             if (temp.left != null){
-                if (temp.right != null) stack.push(temp.right);
+                TreeNode prev = temp.left;
+
+                while (prev.right != null ) prev = prev.right;
+                
+                prev.right = temp.right;
                 temp.right = temp.left;
                 temp.left = null;
-            } else if (temp.right == null) {
-                temp.right = stack.pop();
             }
 
             temp = temp.right;
