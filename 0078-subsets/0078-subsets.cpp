@@ -1,25 +1,30 @@
 class Solution {
 public:
     vector<vector<int>> subsets(vector<int>& nums) {
-        vector<int> subset;
-        return getSubsets(nums, subset, 0);
-    }
+        int n = nums.size();
 
-    vector<vector<int>> getSubsets(vector<int>& nums, vector<int>& subset, int idx){
+        int subsets = 1 << n;
+
         vector<vector<int>> ans;
+        for (int i = 0; i < subsets; i++){
+            int currpattern = i;
+            vector<int> currSet;
 
-        if (idx == nums.size()){
-            ans.push_back(subset);
-            return ans;
+            int idx = 0;
+            while (currpattern > 0){
+                if ((currpattern & 1) == 1){
+                    currSet.push_back(nums[idx]);
+                }
+                currpattern = currpattern >> 1;
+                idx++;
+            }
+
+            ans.push_back(currSet);
+
         }
-
-        subset.push_back(nums[idx]);
-        ans = getSubsets(nums,subset,idx + 1);
-        subset.pop_back();
-
-        vector<vector<int>> ans2 = getSubsets(nums,subset, idx + 1); 
-        ans.insert(ans.end(), ans2.begin(), ans2.end());
 
         return ans;
     }
+
+    
 };
