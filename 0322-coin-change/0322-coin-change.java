@@ -11,15 +11,15 @@ class Solution {
             }
         }
 
-        int ans = minCoins(coins, coins.length - 1, amount, 0);
+        int ans = minCoins(coins, coins.length - 1, amount);
         
         return ans == Integer.MAX_VALUE ? -1: ans;
     }
 
-    int minCoins (int[] coins, int idx, int amount, int coinsUsed) {
+    int minCoins (int[] coins, int idx, int amount) {
         // base case 
         if (idx < 0) return Integer.MAX_VALUE;
-        if (amount == 0) return coinsUsed;
+        if (amount == 0) return 0;
 
         if (dp[idx][amount] != -1) return dp[idx][amount];
         
@@ -29,11 +29,12 @@ class Solution {
         
         // take 
         if (coins[idx] <= amount) {
-            take = minCoins(coins, idx, amount - coins[idx], coinsUsed + 1);
+            int result = minCoins(coins, idx, amount - coins[idx]);
+            if (result != Integer.MAX_VALUE) take = result + 1;
         }
 
         // not take 
-        notTake = minCoins(coins, idx - 1, amount, coinsUsed);
+        notTake = minCoins(coins, idx - 1, amount);
 
         dp[idx][amount] = Math.min(take, notTake);
 
