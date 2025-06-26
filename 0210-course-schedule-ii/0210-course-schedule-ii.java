@@ -33,6 +33,10 @@ class Solution {
             }
         }
 
+        for (int i = 0; i < numCourses; i++) {
+            if (indeg[i] != -1) return new int[0];
+        }
+
         Collections.reverse(ans);
         return ans.stream().mapToInt(Integer::intValue).toArray();
     }
