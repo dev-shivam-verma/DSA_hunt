@@ -9,28 +9,30 @@ class Solution {
         for (int i = 0; i < n; i++) {
             Arrays.fill(dp[i], -1);
         }
-        
-        return f(n - 1, m - 1, text1, text2);
-    }
 
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
+                int ans = 0;
 
-    public int f(int i, int j, String a, String b) {
-        // base case
-        if (i < 0 || j < 0) return 0;
+                if (text1.charAt(i) == text2.charAt(j)) {
+                    ans++;
+                    if (i > 0 && j > 0) ans += dp[i - 1][j - 1]; 
+                } else {
+                    if (i > 0) {
+                        ans = dp[i - 1][j];
+                    }
 
-        if (dp[i][j] != -1) return dp[i][j];
+                    if (j > 0) {
+                        ans = Math.max(ans, dp[i][j - 1]);
+                    }
+                }
 
-
-        int ans;
-        if (a.charAt(i) == b.charAt(j)) {
-            ans = f(i - 1, j - 1, a, b) + 1;
-        } else {
-            int choiceA = f(i - 1, j, a, b);
-            int choiceB = f(i, j - 1, a, b);
-
-            ans = Math.max(choiceA, choiceB);
+                dp[i][j] = ans;
+            }
         }
-
-        return dp[i][j] = ans;
+        
+        return dp[n - 1][m - 1];
     }
+
+
 }
