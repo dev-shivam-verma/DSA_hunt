@@ -1,68 +1,35 @@
 class Solution {
-    private int[][] dp;
+    int dp[][];
 
     public int coinChange(int[] coins, int amount) {
-        dp = new int[coins.length][amount + 1];
+        int n = coins.length;
+        int dp[][] = new int[n + 1][amount + 1];
 
-        // dp initialization 
-        for (int i = 0; i < coins.length; i++ ){
-            for (int j = 0; j <= amount; j++) {
-                dp[i][j] = -1;
-            }
-        }
+        for (int i = 0; i <= amount; i++) {
+            dp[0][i] = Integer.MAX_VALUE;
+        }    
+        dp[0][0] = 0;
 
-        // base case (amount == 0)
-        for (int i = 0; i < coins.length; i++) {
-            dp[i][0] = 0;
-        }
-
-        for (int i = 0; i < coins.length; i++) {
-            for (int amt = 1; amt <= amount; amt++) {
+        for (int i = 1; i <= n; i++) {
+            for (int amt = 0; amt <= amount; amt++) {
                 int take = Integer.MAX_VALUE;
-                int notTake = Integer.MAX_VALUE;
 
-                // take 
-                if (coins[i] <= amt) {
-                    int result = dp[i][amt - coins[i]];
-                    if (result != Integer.MAX_VALUE) take = result + 1;
-                }
+                if (coins[i - 1] <= amt) {
+                    int result = dp[i][amt - coins[i - 1]] ;
+                    if (result != Integer.MAX_VALUE) {
+                        take = result + 1;
+                    }
+                } 
+                
+                int notTake = dp[i - 1][amt];
+                
 
-
-                // not take 
-                if (i != 0) {
-                    notTake = dp[i - 1][amt];
-                }
-
-                dp[i][amt] = Integer.min(take,notTake);
-            }
-        }
-        
-        return dp[coins.length - 1][amount] == Integer.MAX_VALUE ? -1: dp[coins.length - 1][amount];
-    }
-
-    int minCoins (int[] coins, int idx, int amount) {
-        // base case 
-        if (idx < 0) return Integer.MAX_VALUE;
-        if (amount == 0) return 0;
-
-        if (dp[idx][amount] != -1) return dp[idx][amount];
-        
-
-        int take = Integer.MAX_VALUE;
-        int notTake = Integer.MAX_VALUE;
-        
-        // take 
-        if (coins[idx] <= amount) {
-            int result = minCoins(coins, idx, amount - coins[idx]);
-            if (result != Integer.MAX_VALUE) take = result + 1;
+                dp[i][amt] = Math.min(take, notTake);
+            } 
         }
 
-        // not take 
-        notTake = minCoins(coins, idx - 1, amount);
-
-        dp[idx][amount] = Math.min(take, notTake);
-
-        return dp[idx][amount];
+        return dp[n][amount] == Integer.MAX_VALUE? -1: dp[n][amount];
     }
-    
+
+
 }
