@@ -1,38 +1,42 @@
 class Solution {
-    int[][] dp;
 
     public int longestCommonSubsequence(String text1, String text2) {
         int n = text1.length();
         int m = text2.length();
-        dp = new int[n][m];
+        int[] prev = new int[m + 1];
 
-        for (int i = 0; i < n; i++) {
-            Arrays.fill(dp[i], -1);
-        }
+        for (int i = 1; i <= n; i++) {
+            int[] cur = new int[m + 1];
+            for (int j = 1; j <= m; j++) {
+                int result = 0;
 
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < m; j++) {
-                int ans = 0;
-
-                if (text1.charAt(i) == text2.charAt(j)) {
-                    ans++;
-                    if (i > 0 && j > 0) ans += dp[i - 1][j - 1]; 
+                if (text1.charAt(i - 1) == text2.charAt(j - 1)) {
+                    result = prev[j - 1] + 1;
                 } else {
-                    if (i > 0) {
-                        ans = dp[i - 1][j];
-                    }
-
-                    if (j > 0) {
-                        ans = Math.max(ans, dp[i][j - 1]);
-                    }
+                    result = prev[j];
+                    result = Math.max(result, cur[j - 1]);
                 }
 
-                dp[i][j] = ans;
+                cur[j] = result;
             }
+            prev = cur;
         }
-        
-        return dp[n - 1][m - 1];
+
+        return prev[m];
     }
 
+    int f(int i, int j, String a, String b) {
+        if (i < 1 || j < 1) return 0;
+
+        int result = 0;
+        if (a.charAt(i - 1) == b.charAt(j - 1)) {
+            result = f(i - 1, j - 1, a, b) + 1;
+        } else {
+            result = f(i - 1, j, a , b);
+            result = Math.max(result, f(i, j - 1, a, b));
+        }
+
+        return result; 
+    }
 
 }
