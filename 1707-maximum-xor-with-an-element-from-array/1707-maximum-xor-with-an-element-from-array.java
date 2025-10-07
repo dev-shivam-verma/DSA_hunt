@@ -55,14 +55,19 @@ class Trie {
     }
 }
 
+// O(n*log(n) + m*log(m) + 2m + n)
 class Solution {
     public int[] maximizeXor(int[] nums, int[][] queries) {
-        Arrays.sort(nums);
-        
         int n = nums.length;
         int m = queries.length;
+
+        // O(n*log(n))
+        Arrays.sort(nums);
+        
+        
         int[][] _queries = new int[m][3];
 
+        // O(m)
         for (int i = 0; i < m; i++) {
             _queries[i] = new int[]{
                 queries[i][0],
@@ -71,10 +76,12 @@ class Solution {
             };
         }
 
+        // O(m*log(m))
         Arrays.sort(_queries, (a, b)-> {
             return a[1] - b[1];
         });
 
+        // O(n + m)
         int[] result = new int[m];
         int idx = 0;
         Trie trie = new Trie();
