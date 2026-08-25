@@ -9,6 +9,7 @@ Collection of LeetCode questions to ace the coding interview! - Created using [L
 | [0011-container-with-most-water](https://github.com/dev-shivam-verma/DSA_hunt/tree/main/0011-container-with-most-water/) | Medium |
 | [0015-3sum](https://github.com/dev-shivam-verma/DSA_hunt/tree/main/0015-3sum/) | Medium |
 | [0042-trapping-rain-water](https://github.com/dev-shivam-verma/DSA_hunt/tree/main/0042-trapping-rain-water/) | Hard |
+| [3718-smallest-missing-multiple-of-k](https://github.com/dev-shivam-verma/DSA_hunt/tree/main/3718-smallest-missing-multiple-of-k/) | Easy |
 ## Two Pointers
 | Problem Name | Difficulty |
 | ------- | ------- |
@@ -35,4 +36,8 @@ Collection of LeetCode questions to ace the coding interview! - Created using [L
 | Problem Name | Difficulty |
 | ------- | ------- |
 | [0042-trapping-rain-water](https://github.com/dev-shivam-verma/DSA_hunt/tree/main/0042-trapping-rain-water/) | Hard |
+## Hash Table
+| Problem Name | Difficulty |
+| ------- | ------- |
+| [3718-smallest-missing-multiple-of-k](https://github.com/dev-shivam-verma/DSA_hunt/tree/main/3718-smallest-missing-multiple-of-k/) | Easy |
 <!---LeetCode Topics End-->
