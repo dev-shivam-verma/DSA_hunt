@@ -39,5 +39,14 @@ Collection of LeetCode questions to ace the coding interview! - Created using [L
 ## Hash Table
 | Problem Name | Difficulty |
 | ------- | ------- |
+| [0003-longest-substring-without-repeating-characters](https://github.com/dev-shivam-verma/DSA_hunt/tree/main/0003-longest-substring-without-repeating-characters/) | Medium |
 | [3718-smallest-missing-multiple-of-k](https://github.com/dev-shivam-verma/DSA_hunt/tree/main/3718-smallest-missing-multiple-of-k/) | Easy |
+## String
+| Problem Name | Difficulty |
+| ------- | ------- |
+| [0003-longest-substring-without-repeating-characters](https://github.com/dev-shivam-verma/DSA_hunt/tree/main/0003-longest-substring-without-repeating-characters/) | Medium |
+## Sliding Window
+| Problem Name | Difficulty |
+| ------- | ------- |
+| [0003-longest-substring-without-repeating-characters](https://github.com/dev-shivam-verma/DSA_hunt/tree/main/0003-longest-substring-without-repeating-characters/) | Medium |
 <!---LeetCode Topics End-->
