@@ -1,39 +1,34 @@
 class Solution {
 public:
     bool checkInclusion(string s1, string s2) {
-        if (s2.length() - s1.length() < 0) return false;
+        vector<int> hash(26,0);
+        vector<int> windowFreq(26,0);
+        
+        for (int i = 0; i < size(s1); i++) {
+            hash[s1[i] - 'a']++;
+        }
 
-        int ogFrequency[26] = {0};
-        int slidingFrequency[26] = {0};
-        int windStr = 0;
 
-        for (int i: s1){
-            ogFrequency[i - 'a']++;
-        }       
+        int start= 0; 
+        int n = size(s2);
 
-        for (int x = 0; x < s2.length(); x++){
-
-            if (x <= s1.length() - 1){
-                //calculating frequency of characters
-                slidingFrequency[s2[x] - 'a']++;
+        for (int i = 0; i < n; i++) {
+            if (i < size(s1)) {
+                windowFreq[s2[i] - 'a']++;
             } else {
-
-                //calculating frequency of characters
-                slidingFrequency[s2[windStr++] - 'a']--;
-                slidingFrequency[s2[x] - 'a']++;
+                windowFreq[s2[i] - 'a']++;
+                windowFreq[s2[start++] - 'a']--;
             }
 
 
-            // matching the frequencies
-            if (x >= s1.length() - 1){
-                for (int i = 0; i < 26; i++){
-                    if (slidingFrequency[i] != ogFrequency[i]) break;
-                    else if (i == 25) return true;
-                }
+            // matching freq;
+            for (int x = 0; x < 26; x++) {
+                if (hash[x] != windowFreq[x]) break;
+                if (x == 25 && hash[x] == windowFreq[x]) return true;
             }
-        }    
+        }
 
-
-        return false;  
+       
+        return false;
     }
 };
