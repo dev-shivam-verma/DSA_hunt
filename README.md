@@ -28,6 +28,7 @@ Collection of LeetCode questions to ace the coding interview! - Created using [L
 ## Dynamic Programming
 | Problem Name | Difficulty |
 | ------- | ------- |
+| [0022-generate-parentheses](https://github.com/dev-shivam-verma/DSA_hunt/tree/main/0022-generate-parentheses/) | Medium |
 | [0042-trapping-rain-water](https://github.com/dev-shivam-verma/DSA_hunt/tree/main/0042-trapping-rain-water/) | Hard |
 ## Stack
 | Problem Name | Difficulty |
@@ -49,6 +50,7 @@ Collection of LeetCode questions to ace the coding interview! - Created using [L
 | Problem Name | Difficulty |
 | ------- | ------- |
 | [0003-longest-substring-without-repeating-characters](https://github.com/dev-shivam-verma/DSA_hunt/tree/main/0003-longest-substring-without-repeating-characters/) | Medium |
+| [0022-generate-parentheses](https://github.com/dev-shivam-verma/DSA_hunt/tree/main/0022-generate-parentheses/) | Medium |
 | [0076-minimum-window-substring](https://github.com/dev-shivam-verma/DSA_hunt/tree/main/0076-minimum-window-substring/) | Hard |
 | [0424-longest-repeating-character-replacement](https://github.com/dev-shivam-verma/DSA_hunt/tree/main/0424-longest-repeating-character-replacement/) | Medium |
 | [0567-permutation-in-string](https://github.com/dev-shivam-verma/DSA_hunt/tree/main/0567-permutation-in-string/) | Medium |
@@ -59,4 +61,12 @@ Collection of LeetCode questions to ace the coding interview! - Created using [L
 | [0076-minimum-window-substring](https://github.com/dev-shivam-verma/DSA_hunt/tree/main/0076-minimum-window-substring/) | Hard |
 | [0424-longest-repeating-character-replacement](https://github.com/dev-shivam-verma/DSA_hunt/tree/main/0424-longest-repeating-character-replacement/) | Medium |
 | [0567-permutation-in-string](https://github.com/dev-shivam-verma/DSA_hunt/tree/main/0567-permutation-in-string/) | Medium |
+## Backtracking
+| Problem Name | Difficulty |
+| ------- | ------- |
+| [0022-generate-parentheses](https://github.com/dev-shivam-verma/DSA_hunt/tree/main/0022-generate-parentheses/) | Medium |
+## Bracket Sequences
+| Problem Name | Difficulty |
+| ------- | ------- |
+| [0022-generate-parentheses](https://github.com/dev-shivam-verma/DSA_hunt/tree/main/0022-generate-parentheses/) | Medium |
 <!---LeetCode Topics End-->
